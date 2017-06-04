@@ -81,11 +81,15 @@ public class Valadoc.Api.Package : Node {
 	}
 
 	// <version, symbols>
-	private Vala.HashMap<string?, Vala.ArrayList<Symbol>> deprecated;
+	private Vala.HashMap<string, Vala.ArrayList<Symbol>> deprecated;
 
 	internal void register_deprecated_symbol (Symbol symbol, string? version) {
 		if (deprecated == null) {
-			deprecated = new Vala.HashMap<string?, Vala.ArrayList<Symbol>> (str_hash, str_equal);
+			deprecated = new Vala.HashMap<string, Vala.ArrayList<Symbol>> (str_hash, str_equal);
+		}
+
+		if (version == null) {
+			version = "0xdeadbeef";
 		}
 
 		Vala.ArrayList<Symbol> list = deprecated.get (version);
@@ -97,9 +101,9 @@ public class Valadoc.Api.Package : Node {
 		list.add (symbol);
 	}
 
-	public Vala.Map<string?, Vala.Collection<Symbol>> get_deprecated_symbols () {
+	public Vala.Map<string, Vala.Collection<Symbol>> get_deprecated_symbols () {
 		if (deprecated == null) {
-			return new Vala.HashMap<string?, Vala.Collection<Symbol>> (str_hash, str_equal);
+			return new Vala.HashMap<string, Vala.Collection<Symbol>> (str_hash, str_equal);
 		}
 
 		return deprecated;
