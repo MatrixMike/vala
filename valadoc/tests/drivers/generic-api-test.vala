@@ -23,7 +23,7 @@
 
 using Valadoc;
 
-[CCode (name = "TOP_SRC_DIR")]
+[CCode (cname = "TOP_SRC_DIR")]
 extern const string TOP_SRC_DIR;
 
 
@@ -2712,12 +2712,7 @@ public static void test_package_out (Api.Package pkg) {
 }
 
 
-public static void test_driver (string driver_path) {
-	if (!FileUtils.test (driver_path, FileTest.EXISTS)) {
-		message ("Driver '%s' is not available", Valadoc.realpath (driver_path));
-		assert_not_reached ();
-	}
-
+public static void test_driver () {
 	var settings = new Valadoc.Settings ();
 	var reporter = new ErrorReporter ();
 
@@ -2735,12 +2730,11 @@ public static void test_driver (string driver_path) {
 	settings.path = "out";
 
 
-	ModuleLoader modules = ModuleLoader.get_instance ();
-	var driver = null; //modules.create_driver (driver_path);
+	var driver = new Valadoc.Drivers.Driver ();
 	assert (driver != null);
 
 
-	Api.Tree? doctree = null; //driver.build (settings, reporter);
+	Api.Tree? doctree = driver.build (settings, reporter);
 	assert (reporter.errors == 0);
 	assert (doctree != null);
 

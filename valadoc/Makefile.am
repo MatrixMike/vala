@@ -50,7 +50,7 @@ valadoc_LDADD = \
 	$(NULL)
 
 valadoc.vala.stamp: $(valadoc_VALASOURCES) $(top_srcdir)/vala/libvala@PACKAGE_SUFFIX@.vapi $(top_srcdir)/libvaladoc/valadoc@PACKAGE_SUFFIX@.vapi
-	$(VALAC) \
+	$(VALA_V)$(VALAC) \
 		$(VALAFLAGS) \
 		-C \
 		--vapidir $(top_srcdir)/vala \

@@ -28,7 +28,7 @@ libdoclet_la_SOURCES = \
 	$(NULL)
 
 libdoclet.vala.stamp: $(libdoclet_la_VALASOURCES)
-	$(VALAC) \
+	$(VALA_V)$(VALAC) \
 		$(VALAFLAGS) \
 		-C \
 		--vapidir $(top_srcdir)/vala \

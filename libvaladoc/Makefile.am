@@ -172,7 +172,7 @@ libvaladoc@PACKAGE_SUFFIX@_la_SOURCES = \
 
 valadoc@PACKAGE_SUFFIX@.vapi valadoc.h: libvaladoc.vala.stamp
 libvaladoc.vala.stamp: $(libvaladoc_la_VALASOURCES)
-	$(VALAC) \
+	$(VALA_V)$(VALAC) \
 		$(VALAFLAGS) \
 		--basedir $(srcdir) \
 		--directory $(builddir) \
